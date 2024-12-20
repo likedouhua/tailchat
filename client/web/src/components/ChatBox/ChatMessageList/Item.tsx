@@ -159,28 +159,7 @@ export const NormalMessage: React.FC<ChatMessageItemProps> = React.memo(
 
                 <span>{getMessageRender(payload.content)}</span>
                 <span>{getMessageRender(payload.author)}</span>
-                <span>{getMessageRender(payload)}</span>
                 <span>{SYSTEM_USERID}</span>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 {payload.sendFailed === true && (
                   <Icon
                     className="inline-block ml-1"
