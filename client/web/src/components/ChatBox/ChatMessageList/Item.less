@@ -26,6 +26,28 @@
   }
 }
 
+.bubble {
+  position: relative;
+  display: inline-block;
+  padding: 10px;
+  background-color: #dddddd; /* 气泡框的背景色 */
+  border-radius: 5px; /* 圆角效果 */
+}
+
+.bubble:after {
+  content: '';
+  position: absolute;
+  right: 100%; /* 气泡框箭头在左侧 */
+  top: 8px; /* 调整箭头的垂直位置 */
+  width: 0;
+  height: 0;
+  border-width: 7px;
+  border-style: solid;
+  border-color: transparent;
+  margin-bottom: 15px;
+  border-right-width: 20px; /* 调整箭头的宽度 */
+  border-right-color: #dddddd; /* 箭头的颜色，应与气泡框背景色一致 */
+}
 
 .chat-message-item_action-popover {
   padding-top: 0;

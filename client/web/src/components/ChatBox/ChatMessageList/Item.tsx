@@ -85,12 +85,14 @@ export const NormalMessage: React.FC<ChatMessageItemProps> = React.memo(
       payload.sendFailed === true;
 
     return (
+
       <div
         className={clsx(
           'chat-message-item flex px-2 mobile:px-0 group relative select-text text-sm',
           {
             'bg-black bg-opacity-10': isActionBtnActive,
             'hover:bg-black hover:bg-opacity-5': !isActionBtnActive,
+            'padding-top-20':showAvatar,
           }
         )}
         data-message-id={payload._id}
@@ -157,7 +159,7 @@ export const NormalMessage: React.FC<ChatMessageItemProps> = React.memo(
               <div className="chat-message-item_body leading-6 break-words">
                 <MessageQuote payload={payload} />
 
-                <span>{getMessageRender(payload.content)}</span>
+                <span className="bubble">{getMessageRender(payload.content)}</span>
 
                 {payload.sendFailed === true && (
                   <Icon
