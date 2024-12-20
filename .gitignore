@@ -3,6 +3,9 @@ client/locales
 .vercel
 .DS_Store
 
+.docker-compose.env
+.docker-compose.yml
+
 # yalc
 .yalc
 yalc.lock
