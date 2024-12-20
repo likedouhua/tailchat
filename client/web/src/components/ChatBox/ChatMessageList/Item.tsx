@@ -85,9 +85,9 @@ export const NormalMessage: React.FC<ChatMessageItemProps> = React.memo(
       payload.sendFailed === true;
 
     const currentUserId = payload.author; // 获取当前用户ID
-    const userInfoCache = userInfo as UserBaseInfo;
+    <UserPopover userInfo={userInfo as UserBaseInfo} />
     let isSelf= true;
-    if(userInfoCache._id === currentUserId){
+    if(userInfo._id === currentUserId){
       isSelf=false;
     }
 
@@ -167,8 +167,9 @@ export const NormalMessage: React.FC<ChatMessageItemProps> = React.memo(
               <div className="chat-message-item_body leading-6 break-words">
                 <MessageQuote payload={payload} />
 
-                <span className="bubble">{getMessageRender(payload.content)}</span>
-                <span className="bubble">{userInfoCache}</span>
+                <span className="bubble">{getMessageRender(payload.content)}</span><br />
+                <span className="bubble">{currentUserId}</span><br />
+                <span className="bubble">{userInfo._id}</span>
 
                 {payload.sendFailed === true && (
                   <Icon
