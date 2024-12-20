@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from 'react';
+import { useUserId } from '../../../../../shared/redux/hooks/useUserInfo';
 import {
   ChatMessage,
   formatShortTime,
@@ -92,7 +93,7 @@ export const NormalMessage: React.FC<ChatMessageItemProps> = React.memo(
           {
             'bg-black bg-opacity-10': isActionBtnActive,
             'hover:bg-black hover:bg-opacity-5': !isActionBtnActive,
-            'padding-top-20':showAvatar,
+            'padding-top-20': showAvatar,
           }
         )}
         data-message-id={payload._id}
@@ -137,8 +138,21 @@ export const NormalMessage: React.FC<ChatMessageItemProps> = React.memo(
           >
             {showAvatar && (
               <div className="flex items-center">
-                <div className="font-bold">
-                  {userInfo.nickname || <span>&nbsp;</span>}
+                <div className="info-container">
+                  <div className="font-bold">
+                    昵称: {userInfo.nickname || <span>&nbsp;</span>}
+                  </div>
+                  <div>聊天消息: {ChatMessage}</div>
+                  <div>格式化时间函数: {formatShortTime.toString()}</div>
+                  <div>是否显示消息时间: {shouldShowMessageTime ? '是' : '否'}</div>
+                  <div>系统用户ID: {SYSTEM_USERID}</div>
+                  <div>翻译函数: {t.toString()}</div>
+                  <div>缓存的用户信息: {useCachedUserInfo.toString()}</div>
+                  <div>消息助手: {MessageHelper.toString()}</div>
+                  <div>显示消息时间: {showMessageTime ? '是' : '否'}</div>
+                  <div>用户信息列表: {useUserInfoList.toString()}</div>
+                  <div>用户基本信息: {JSON.stringify(UserBaseInfo)}</div>
+                  <div>用户设置: {useUserSettings.toString()}</div>
                 </div>
                 <div className="hidden group-hover:block opacity-40 ml-1 text-sm">
                   {formatShortTime(payload.createdAt)}
