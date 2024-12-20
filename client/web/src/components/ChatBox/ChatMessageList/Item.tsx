@@ -1,5 +1,4 @@
 import React, { useMemo, useState } from 'react';
-import { useUserId } from '../../../../../shared/redux/hooks/useUserInfo';
 import {
   ChatMessage,
   formatShortTime,
@@ -86,14 +85,12 @@ export const NormalMessage: React.FC<ChatMessageItemProps> = React.memo(
       payload.sendFailed === true;
 
     return (
-
       <div
         className={clsx(
           'chat-message-item flex px-2 mobile:px-0 group relative select-text text-sm',
           {
             'bg-black bg-opacity-10': isActionBtnActive,
             'hover:bg-black hover:bg-opacity-5': !isActionBtnActive,
-            'padding-top-20': showAvatar,
           }
         )}
         data-message-id={payload._id}
@@ -138,21 +135,8 @@ export const NormalMessage: React.FC<ChatMessageItemProps> = React.memo(
           >
             {showAvatar && (
               <div className="flex items-center">
-                <div className="info-container">
-                  <div className="font-bold">
-                    昵称: {userInfo.nickname || <span>&nbsp;</span>}
-                  </div>
-                  <div>聊天消息: {ChatMessage}</div>
-                  <div>格式化时间函数: {formatShortTime.toString()}</div>
-                  <div>是否显示消息时间: {shouldShowMessageTime ? '是' : '否'}</div>
-                  <div>系统用户ID: {SYSTEM_USERID}</div>
-                  <div>翻译函数: {t.toString()}</div>
-                  <div>缓存的用户信息: {useCachedUserInfo.toString()}</div>
-                  <div>消息助手: {MessageHelper.toString()}</div>
-                  <div>显示消息时间: {showMessageTime ? '是' : '否'}</div>
-                  <div>用户信息列表: {useUserInfoList.toString()}</div>
-                  <div>用户基本信息: {JSON.stringify(UserBaseInfo)}</div>
-                  <div>用户设置: {useUserSettings.toString()}</div>
+                <div className="font-bold">
+                  {userInfo.nickname || <span>&nbsp;</span>}
                 </div>
                 <div className="hidden group-hover:block opacity-40 ml-1 text-sm">
                   {formatShortTime(payload.createdAt)}
@@ -173,7 +157,19 @@ export const NormalMessage: React.FC<ChatMessageItemProps> = React.memo(
               <div className="chat-message-item_body leading-6 break-words">
                 <MessageQuote payload={payload} />
 
-                <span className="bubble">{getMessageRender(payload.content)}</span>
+                <span>{getMessageRender(payload.content)}</span>
+
+                <span>聊天消息: {ChatMessage}</span><br />
+                <span>格式化时间函数: {formatShortTime.toString()}</span><br />
+                <span>是否显示消息时间: {shouldShowMessageTime ? '是' : '否'}</span><br />
+                <span>系统用户ID: {SYSTEM_USERID}</span><br />
+                <span>翻译函数: {t.toString()}</span><br />
+                <span>缓存的用户信息: {useCachedUserInfo.toString()}</span><br />
+                <span>消息助手: {MessageHelper.toString()}</span><br />
+                <span>显示消息时间: {showMessageTime ? '是' : '否'}</span><br />
+                <span>用户信息列表: {useUserInfoList.toString()}</span><br />
+                <span>用户基本信息: {JSON.stringify(UserBaseInfo)}</span><br />
+                <span>用户设置: {useUserSettings.toString()}</span>
 
                 {payload.sendFailed === true && (
                   <Icon
